@@ -9,17 +9,17 @@ import Ink
 import Files
 import Codextended
 
-internal struct MarkdownContentFactory<Site: Website> {
+public struct MarkdownContentFactory<Site: Website> {
     let parser: MarkdownParser
     let dateFormatter: DateFormatter
 
-    func makeContent(fromFile file: File) throws -> Content {
+    public func makeContent(fromFile file: File) throws -> Content {
         let markdown = try parser.parse(file.readAsString())
         let decoder = makeMetadataDecoder(for: markdown)
         return try makeContent(fromMarkdown: markdown, file: file, decoder: decoder)
     }
 
-    func makeItem(fromFile file: File,
+    public func makeItem(fromFile file: File,
                   at path: Path,
                   sectionID: Site.SectionID) throws -> Item<Site> {
         let markdown = try parser.parse(file.readAsString())
@@ -41,7 +41,7 @@ internal struct MarkdownContentFactory<Site: Website> {
         )
     }
 
-    func makePage(fromFile file: File, at path: Path) throws -> Page {
+    public func makePage(fromFile file: File, at path: Path) throws -> Page {
         let markdown = try parser.parse(file.readAsString())
         let decoder = makeMetadataDecoder(for: markdown)
         let content = try makeContent(fromMarkdown: markdown, file: file, decoder: decoder)

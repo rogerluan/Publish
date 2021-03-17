@@ -275,7 +275,7 @@ public extension PublishingContext {
     }
 }
 
-internal extension PublishingContext {
+public extension PublishingContext {
     mutating func generationWillBegin() {
         try? updateLastGenerationDate()
     }
